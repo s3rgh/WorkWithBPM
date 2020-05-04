@@ -22,6 +22,7 @@ public class Main {
                     break;
                 case "2":
                     new ExecutorCallsService().parallelExecutor();
+
                     break;
                 case "exit":
                     break;

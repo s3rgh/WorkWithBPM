@@ -2,6 +2,8 @@ package org.sergh.app.execution;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import javafx.application.Application;
+import org.sergh.app.charting.GraphicBuilderService;
 import org.sergh.app.entity.Call;
 import org.sergh.app.entity.Phone;
 import org.sergh.app.interaction.SenderJsonService;
@@ -20,6 +22,10 @@ import java.util.stream.IntStream;
 public class ExecutorCallsService implements ExecutorCalls {
 
     private SenderJsonService senderJsonService = new SenderJsonService();
+    private GraphicBuilderService graphicBuilderService = new GraphicBuilderService();
+    private static List<Integer> listOfTimesForRequest;
+    private static int timeForRequest = 0;
+
 
     private static Call createCall(int n) {
 
@@ -38,7 +44,7 @@ public class ExecutorCallsService implements ExecutorCalls {
 
     @Override
     public void simpleExecutor() {
-        int n = 0;
+
         BufferedReader bufferedReader;
         Call call = new Call();
 
@@ -60,7 +66,8 @@ public class ExecutorCallsService implements ExecutorCalls {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        n = senderJsonService.postJson(ObjToJson(call));
+        timeForRequest = senderJsonService.postJson(ObjToJson(call));
+
     }
 
     @Override
@@ -69,30 +76,36 @@ public class ExecutorCallsService implements ExecutorCalls {
         System.out.println("Enter number of calls:");
         Scanner scanner = new Scanner(System.in);
         int number = scanner.nextInt();
-
         List<Call> listOfCalls = IntStream.range(0, number).mapToObj(ExecutorCallsService::createCall).collect(Collectors.toList());
-
         List<Future<Integer>> futures;
-
         ExecutorService executorService = Executors.newFixedThreadPool(4);
-
         futures = listOfCalls.stream().map(call -> executorService.submit(() -> senderJsonService.postJson(ObjToJson(call)))).collect(Collectors.toList());
-
-        List<Integer> listOfTimesForRequest = futures.stream().map(f -> {
+        listOfTimesForRequest = futures.stream().map(f -> {
             try {
                 return f.get();
             } catch (InterruptedException | ExecutionException e) {
                 throw new RuntimeException();
             }
         }).collect(Collectors.toList());
-
         listOfTimesForRequest.stream().map(i -> i + " ").forEach(System.out::println);
+        executorService.shutdown();
+
+        Application.launch(GraphicBuilderService.class);
     }
+
 
     @Override
     public String ObjToJson(Call call) {
         final Gson GSON = new GsonBuilder().setPrettyPrinting().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
         String str = GSON.toJson(call);
         return ("{\"context\":" + str + "}");
+    }
+
+    public static List<Integer> getListOfTimesForRequest() {
+        return listOfTimesForRequest;
+    }
+
+    public static int getTimeForRequest() {
+        return timeForRequest;
     }
 }
