@@ -11,10 +11,11 @@ import org.sergh.app.execution.ExecutorCallsService;
 
 import java.util.List;
 
-public class GraphicBuilderService extends Application {
+public class GraphicBuilderService extends Application implements GraphicBuilder {
 
     private List<Integer> listOfTimesForRequest = ExecutorCallsService.getListOfTimesForRequest();
 
+    @Override
     public void start(Stage stage) {
 
         Scene scene = new Scene(new Group());
@@ -60,4 +61,3 @@ public class GraphicBuilderService extends Application {
         return (double) sum / list.size();
     }
 }
-

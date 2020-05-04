@@ -6,7 +6,6 @@ import java.util.Random;
 
 public class Phone {
 
-
     @SerializedName("tel")
     private String number;
     private String type;
@@ -59,4 +58,3 @@ public class Phone {
                 '}';
     }
 }
-

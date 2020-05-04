@@ -8,9 +8,7 @@ import org.sergh.app.entity.Call;
 import org.sergh.app.entity.Phone;
 import org.sergh.app.interaction.SenderJsonService;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -67,7 +65,6 @@ public class ExecutorCallsService implements ExecutorCalls {
             e.printStackTrace();
         }
         timeForRequest = senderJsonService.postJson(ObjToJson(call));
-
     }
 
     @Override
@@ -92,7 +89,6 @@ public class ExecutorCallsService implements ExecutorCalls {
 
         Application.launch(GraphicBuilderService.class);
     }
-
 
     @Override
     public String ObjToJson(Call call) {

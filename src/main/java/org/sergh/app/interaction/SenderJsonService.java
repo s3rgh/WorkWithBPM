@@ -23,7 +23,6 @@ public class SenderJsonService implements SenderJson {
         final String queryUrl = "https://6v5bk3r7iujya.s-quickbpm.ru/api/v1/app/enterCalls/calls/create";
         final String TOKEN = "eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9.eyJjb21wYW55IjoiNnY1YmszcjdpdWp5YSIsInVzZXJJZCI6IjhkN2NhNzQ2LTJlMjMtNDMyZS1iYWYwLWY4YzVkN2Y2ZjE1OCIsIm93bmVyIjp0cnVlLCJzZXNzaW9uSWQiOiJkNjc1ZjA3OS1hNDIxLTRiODktYmQ3OC0xZmI5NDA4OWQwZmYiLCJwcml2aWxlZ2VzIjpbInN5c3RlbSIsImFkbWluaXN0cmF0aW9uIiwic3VwZXJ2aXNvciJdLCJleHAiOjE1ODkyOTExODUsImlhdCI6MTU4ODA4MTQ2NSwiaXNzIjoiYXBpIn0.YenmMzAqbnqfW1WdA4gLTtR5D8Wn8iPX5hXsPXG-rzwyYA2o8vTAGjpLcesvuu47UyhUWk5h_kE_NByARAFCIWmTIPCyqCamGKnrhoELvhSqrkhRektxQSmu5m79Iw-ePmYc4N-EOeV1N-noIXdYalho6duwMZwseemMqxrVCvg";
 
-
         System.out.println(json);
         HttpsURLConnection connection;
 

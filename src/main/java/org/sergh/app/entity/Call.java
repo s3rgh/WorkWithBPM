@@ -17,6 +17,7 @@ public class Call {
     private String testMessage;
 
     public Call() {
+
     }
 
     public Call(String __name, Date dateAndTime, String companyName, String firstName, String lastName, List<Phone> phoneNumber, String testMessage) {
@@ -120,7 +121,6 @@ public class Call {
                     (random.nextFloat() * (rightLimit - leftLimit + 1));
             buffer.append((char) randomLimitedInt);
         }
-
         return buffer.toString();
     }
 }
