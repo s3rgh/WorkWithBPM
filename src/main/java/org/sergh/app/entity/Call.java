@@ -109,6 +109,10 @@ public class Call {
                 '}';
     }
 
+    /**
+     * Метод для генерации рандомной строки
+     * @return
+     */
     public String generateSimpleString() {
 
         int leftLimit = 97; // letter 'a'

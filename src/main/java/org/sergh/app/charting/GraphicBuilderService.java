@@ -41,18 +41,33 @@ public class GraphicBuilderService extends Application implements GraphicBuilder
         stage.show();
     }
 
+    /**
+     * Приватный метод для вычисления максимального времени отправки запрос
+     * @param list
+     * @return значение int
+     */
     private static int maxTimeForRequest(List<Integer> list) {
 
         return list.stream().mapToInt(number -> number).max().orElse(Integer.MIN_VALUE);
 
     }
 
+    /**
+     * Приватный метод для вычисления минимального времени отправки запрос
+     * @param list
+     * @return значение int
+     */
     private static int minTimeForRequest(List<Integer> list) {
 
         return list.stream().mapToInt(number -> number).min().orElse(Integer.MAX_VALUE);
 
     }
 
+    /**
+     * Приватный метод для вычисления среднего времени отправки запрос
+     * @param list
+     * @return значение double
+     */
     private static double averageTimeForRequest(List<Integer> list) {
         long sum = 0;
         for (Integer integer : list) {
